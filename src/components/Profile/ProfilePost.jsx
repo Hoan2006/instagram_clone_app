@@ -104,7 +104,7 @@ const ProfilePost = ({ post }) => {
 					</Flex>
 				</Flex>
 
-				<Image src={post.imageURL} alt='profile post' w={"100%"} h={"100%"} objectFit={"cover"} />
+				<Image src={post.imageURL || "fallback_image_url"} alt='profile post' w={"100%"} h={"100%"} objectFit={"cover"} />
 			</GridItem>
 
 			<Modal isOpen={isOpen} onClose={onClose} isCentered={true} size={{ base: "3xl", md: "5xl" }}>
@@ -159,8 +159,8 @@ const ProfilePost = ({ post }) => {
 									{/* CAPTION */}
 									{post.caption && <Caption post={post} />}
 									{/* COMMENTS */}
-									{post.comments.map((comment) => (
-										<Comment key={comment.id} comment={comment} />
+									{post.comments.map((comment, index) => (
+										<Comment key={comment.id || index} comment={comment} />
 									))}
 								</VStack>
 								<Divider my={4} bg={"gray.8000"} />
